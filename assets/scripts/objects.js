@@ -18,6 +18,13 @@ function getInput() {
     value: value.value,
   };
 
+  for (const key in input) {
+    if (input[key] === '') {
+      alert('INVALID INPUT !');
+      return;
+    }
+  }
+
   list.push(input);
   movie.value = null;
   name.value = null;
@@ -28,13 +35,17 @@ function getInput() {
 
 function display() {
   input = getInput();
-  console.log(input);
-  const movie = document.createElement('li');
-  movie.textContent = input.name;
-  movieList.appendChild(movie);
+  if (input) {
+    console.log(input);
+    const movie = document.createElement('li');
+    movie.textContent = input.name;
+    movieList.appendChild(movie);
 
-  if (list.includes(input)) {
-    movieList.classList.add('visible');
+    if (list.includes(input)) {
+      movieList.classList.add('visible');
+    }
+  } else {
+    alert('fill out all the input fields');
   }
 }
 
