@@ -8,18 +8,23 @@ const searchMovie = document.getElementById('filter-title').value;
 const display = document.getElementById('movie-list');
 
 function getInput() {
-  const movie = document.getElementById('title').value;
-  const name = document.getElementById('extra-name').value;
-  const value = document.getElementById('extra-value').value;
+  let movie = document.getElementById('title');
+  let name = document.getElementById('extra-name');
+  let value = document.getElementById('extra-value');
 
   const input = {
-    name: movie,
-    title: name,
-    value: value,
+    name: movie.value,
+    title: name.value,
+    value: value.value,
   };
 
   list.push(input);
+  movie.value = null;
+  name.value = null;
+  value.value = null;
+
+  return input;
 }
 
 addMovieButton.addEventListener('click', getInput);
-searchButton.addEventListener('click');
+// searchButton.addEventListener('click');
