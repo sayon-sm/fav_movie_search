@@ -5,7 +5,7 @@ const list = [];
 
 const searchMovie = document.getElementById('filter-title').value;
 
-const display = document.getElementById('movie-list');
+const movieList = document.getElementById('movie-list');
 
 function getInput() {
   let movie = document.getElementById('title');
@@ -26,5 +26,14 @@ function getInput() {
   return input;
 }
 
-addMovieButton.addEventListener('click', getInput);
+function display() {
+  input = getInput();
+  console.log(input);
+  const movie = document.createElement('li');
+  movie.textContent = input.name;
+  movieList.appendChild(movie);
+  movieList.classList.toggle('visible');
+}
+
+addMovieButton.addEventListener('click', display);
 // searchButton.addEventListener('click');
