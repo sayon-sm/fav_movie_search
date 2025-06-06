@@ -3,8 +3,6 @@ const searchButton = document.getElementById('search-btn');
 
 const list = [];
 
-const searchMovie = document.getElementById('filter-title').value;
-
 const movieList = document.getElementById('movie-list');
 
 function getInput() {
@@ -19,7 +17,7 @@ function getInput() {
   };
 
   for (const key in input) {
-    if (input[key] === '') {
+    if (input[key].trim() === '') {
       alert('INVALID INPUT !');
       return;
     }
@@ -40,14 +38,23 @@ function display() {
     const movie = document.createElement('li');
     movie.textContent = input.name;
     movieList.appendChild(movie);
-
-    if (list.includes(input)) {
-      movieList.classList.add('visible');
-    }
+    movieList.classList.add('visible');
   } else {
     alert('fill out all the input fields');
   }
 }
 
+function search() {
+  const searchMovie = document.getElementById('filter-title').value;
+  for (input of list) {
+    for (key in input) {
+      if (input[key].includes(searchMovie)) {
+        alert('found');
+        console.log(input[key]);
+      }
+    }
+  }
+}
+
 addMovieButton.addEventListener('click', display);
-// searchButton.addEventListener('click');
+searchButton.addEventListener('click', search);
