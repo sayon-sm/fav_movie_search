@@ -32,7 +32,10 @@ function display() {
   const movie = document.createElement('li');
   movie.textContent = input.name;
   movieList.appendChild(movie);
-  movieList.classList.toggle('visible');
+
+  if (list.includes(input)) {
+    movieList.classList.add('visible');
+  }
 }
 
 addMovieButton.addEventListener('click', display);
