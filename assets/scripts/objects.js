@@ -28,18 +28,18 @@ function getInput() {
   name.value = null;
   value.value = null;
 
-  display(input);
+  display(list);
 }
 
-function display(input) {
-  if (input) {
-    console.log(input);
+function display(list) {
+  movieList.innerHTML = '';
+  movieList.classList.add('visible'); //bug adds multiple visible class
+  for (const input of list) {
+    const { name } = input;
+    const text = `${name.toUpperCase()}  ${input.title} - ${input.value}`;
     const movie = document.createElement('li');
-    movie.textContent = input.name;
+    movie.textContent = text;
     movieList.appendChild(movie);
-    movieList.classList.add('visible');
-  } else {
-    alert('fill out all the input fields');
   }
 }
 
