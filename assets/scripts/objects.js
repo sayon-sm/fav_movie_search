@@ -28,11 +28,10 @@ function getInput() {
   name.value = null;
   value.value = null;
 
-  return input;
+  display(input);
 }
 
-function display() {
-  input = getInput();
+function display(input) {
   if (input) {
     console.log(input);
     const movie = document.createElement('li');
@@ -49,12 +48,11 @@ function search() {
   for (input of list) {
     for (key in input) {
       if (input[key].includes(searchMovie)) {
-        alert('found');
-        console.log(input[key]);
+        display(input);
       }
     }
   }
 }
 
-addMovieButton.addEventListener('click', display);
+addMovieButton.addEventListener('click', getInput);
 searchButton.addEventListener('click', search);
