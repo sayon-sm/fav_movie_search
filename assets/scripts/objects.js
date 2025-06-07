@@ -1,7 +1,7 @@
 const addMovieButton = document.getElementById('add-movie-btn');
 const searchButton = document.getElementById('search-btn');
 
-const list = [];
+const inputList = [];
 
 const movieList = document.getElementById('movie-list');
 
@@ -23,15 +23,15 @@ function getInput() {
     }
   }
 
-  list.push(input);
+  inputList.push(input);
   movie.value = null;
   name.value = null;
   value.value = null;
 
-  display(list);
+  display(inputList);
 }
 
-function display(list) {
+function display(list = inputList) {
   movieList.innerHTML = '';
   movieList.classList.add('visible'); //bug adds multiple visible class
   for (const input of list) {
@@ -44,13 +44,18 @@ function display(list) {
 }
 
 function search() {
+  let searchList = [];
   const searchMovie = document.getElementById('filter-title').value;
-  for (input of list) {
-    for (key in input) {
-      if (input[key].includes(searchMovie)) {
-        display(input);
-      }
+  for (input of inputList) {
+    if (input.name.includes(searchMovie)) {
+      searchList.push(input);
     }
+  }
+  if (searchList.length === 0) {
+    alert('Not found !');
+    display();
+  } else {
+    display(searchList);
   }
 }
 
