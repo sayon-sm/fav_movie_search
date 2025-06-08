@@ -1,10 +1,14 @@
+'use strict';
 const addMovieButton = document.getElementById('add-movie-btn');
 const searchButton = document.getElementById('search-btn');
 
+// holds the input data
 const inputList = [];
 
+// UI to display input data
 const movieList = document.getElementById('movie-list');
 
+// gets input from input fields and stores it as object
 function getInput() {
   let movie = document.getElementById('title');
   let name = document.getElementById('extra-name');
@@ -16,6 +20,7 @@ function getInput() {
     value: value.value,
   };
 
+  // check if any input field is empty
   for (const key in input) {
     if (input[key].trim() === '') {
       alert('INVALID INPUT !');
@@ -31,9 +36,10 @@ function getInput() {
   display(inputList);
 }
 
+// renders the list of inputs
 function display(list = inputList) {
   movieList.innerHTML = '';
-  movieList.classList.add('visible'); //bug adds multiple visible class
+  movieList.classList.add('visible');
   for (const input of list) {
     const { name } = input;
     const text = `${name.toUpperCase()}  ${input.title} - ${input.value}`;
@@ -43,10 +49,11 @@ function display(list = inputList) {
   }
 }
 
+// searches for title matching search criteria
 function search() {
-  let searchList = [];
+  let searchList = []; // holds the objects that match the search criteria
   const searchMovie = document.getElementById('filter-title').value;
-  for (input of inputList) {
+  for (const input of inputList) {
     if (input.name.includes(searchMovie)) {
       searchList.push(input);
     }
